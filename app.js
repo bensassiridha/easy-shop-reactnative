@@ -37,15 +37,21 @@ mongoose.connect(process.env.CONNECTION_STRING, {
     useUnifiedTopology: true,
     dbName: 'eshop-database'
 })
-.then(()=>{
-    console.log('Database Connection is ready...')
-})
-.catch((err)=> {
-    console.log(err);
-})
+    .then(() => {
+        console.log('Database Connection is ready...')
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 
-//Server
-app.listen(3000, ()=>{
+//developement
+// app.listen(3000, () => {
+//
+//     console.log('server is running http://localhost:3000');
+// })
 
-    console.log('server is running http://localhost:3000');
+//Production
+var server = app.listen(process.env.PORT || 3000, function () {
+    var port = server.adress().port;
+    console.log("Express is working on port " + port);
 })
